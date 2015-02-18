@@ -14,7 +14,7 @@ gem 'knockoutjs-rails'
 gem 'turbolinks'
 
 #Utilities
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
 gem 'mustache'
 
 #Development

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'revolver#index'
+
   get 'user/index'
 
   get 'user/new'
