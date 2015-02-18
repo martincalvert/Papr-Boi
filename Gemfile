@@ -15,6 +15,9 @@ gem 'turbolinks'
 
 #Utilities
 gem 'bcrypt', '~> 3.1.7'
+gem 'mustache'
 
 #Development
 gem 'pry'
+gem 'haml'
+gem 'haml-rails'
