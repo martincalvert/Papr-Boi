@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+.row-action-primary  a > i, .row-action-primary > i  {
+  font-size: 30px !important;
+}

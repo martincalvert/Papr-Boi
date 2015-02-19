@@ -1,5 +1,9 @@
-.jumbotron.text-center
-  %h1 Login
-  %input
-  %input
-  %button Submit
+.jumbotron.text-center.col-xs-12{style: 'margin-top: 20px;'}
+  .col-xs-6.col-xs-offset-3
+    %h1 Login
+    %form
+      %input.form-control{type: 'email', placeholder: 'Email'}
+      %input.form-control{type: 'password', placeholder: 'Password'}
+      %button.btn.btn-warning.btn-raised{type: 'reset'} Clear
+      %button.btn.btn-info.btn-raised{type: 'submit'} Submit
+    %a{href: 'revolver#request'} Need an account? Request it here.

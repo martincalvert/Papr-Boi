@@ -1,0 +1,39 @@
+.col-xs-10.col-xs-offset-1
+  .jumbotron.text-center{style: 'margin-top: 20px;'}
+    %h1
+      = "Welcome #{session[:user_name]}"
+    %h4 Select a choice
+    %button.btn.btn-raised Create Modules
+    %button.btn.btn-raised Create CSS
+    %button.btn.btn-raised Create Email
+  .row
+    %h1 Help & Info
+  .row
+    .bs-component
+      .list-group
+        .list-group-item
+          .row-action-primary
+            %a{href: '://github.com/sdla4ever/Papr-Boi/issues'}
+              %i.mdi-notification-sms-failed
+          .row-content
+            .list-group-item-heading
+              Issues?
+            .list-group-item-content
+              Issues? Use GitHub issues and that will give me the best chance to look at it!
+        .list-group-item
+          .row-action-primary
+            %a{href: '://github.com/sdla4ever/Papr-Boi/issues'}
+              %i.mdi-action-description
+          .row-content
+            .list-group-item-heading
+              Need Help?
+            .list-group-item-content
+              Check the documentation on GitHub for the project!
+        .list-group-item
+          .row-action-primary
+            %i.mdi-social-people
+          .row-content
+            .list-group-item-heading
+              Follow Me
+            .list-group-item-content
+              You can follow me on GitHub and Twitter at @sdla4ever

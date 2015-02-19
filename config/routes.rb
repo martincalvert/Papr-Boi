@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   get 'revolver/logout'
 
   get 'revolver/index'
+
+  get 'revolver/welcome'
 end
