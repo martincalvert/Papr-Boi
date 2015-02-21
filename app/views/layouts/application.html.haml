@@ -7,30 +7,55 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    - if session[:user].present?
-      .navbar.navbar-inverse
+    - if session[:user_id].present?
+      .navbar.navbar-inverse.navbar-fixed
         .navbar-header
           %button.navbar-toggle{:type => "button", :data => {:toggle => "collapse", :target => ".navbar-inverse-collapse"}}
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand{:href => "javascript:void(0)"} Brand
+          = link_to 'Papr Boi', revolver_welcome_path, { class: 'navbar-brand'}
         .navbar-collapse.collapse.navbar-inverse-collapse
           %ul.nav.navbar-nav
-            %li
-              %a{:href => '#'} YAS
-          %form.navbar-form.navbar-left
-            %input.form-control.col-lg-8{:placeholder => "Search", :type => "text" }
-          %ul.nav.navbar-nav.navbar-right
-            %li
-              %a{:href => "javascript:void(0)"} Link
             %li.dropdown
-              %a.dropdown-toggle{:href => "#", :data => {:target => "#", :toggle => "dropdown"}} User
+              %a.dropdown-toggle{:href => "#", :data => {:target => "#", :toggle => "dropdown"}}
+                View
+                %i.mdi-hardware-keyboard-arrow-down
               %ul.dropdown-menu
                 %li
-                  %a Poop
+                  = link_to 'Modules', users_edit_path
                 %li.divider
                 %li
-                  %a{:href => "javascript:void(0)"} Separated link
+                  = link_to 'CSS', revolver_logout_path
+                %li.divider
+                %li
+                  = link_to 'Users', users_index_path
+                %li.divider
+                %li
+                  = link_to 'Permission Groups', revolver_logout_path
+          %ul.nav.navbar-nav.navbar-right
+            %li.dropdown
+              %a.dropdown-toggle{:href => "#", :data => {:target => "#", :toggle => "dropdown"}}
+                %i.mdi-social-person{style: 'font-size: 20px;'}
+              %ul.dropdown-menu
+                %li
+                  = link_to 'User Profile', users_edit_path
+                %li.divider
+                %li
+                  = link_to 'Logout', revolver_logout_path
+    .col-xs-10.col-xs-offset-1
+      .bs-component
+        - if flash[:info].present?
+          .alert.alert-dismissable.alert-success
+            %button.close{type: 'button', data: {dismiss: 'alert'}} x
+            = flash[:info]
+        - if flash[:warning].present?
+          .alert.alert-dismissable.alert-warning
+            %button.close{type: 'button', data: {dismiss: 'alert'}} x
+            = flash[:info]
+        - if flash[:error].present?
+          .alert.alert-dismissable.alert-danger
+            %button.close{type: 'button', data: {dismiss: 'alert'}} x
+            = flash[:info]
     .col-xs-12
       = yield

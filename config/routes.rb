@@ -8,10 +8,12 @@ Rails.application.routes.draw do
   get 'revolver/welcome'
 
   #User Management
-  get 'user/index'
-  get 'user/new'
-  get 'user/edit'
-  get 'user/delete'
+  get 'users/index'
+  get 'users/new'
+  get 'users/edit', to: 'users#edit'
+  get 'users/edit/:id', to: 'users#edit'
+  post 'users/update', to: 'users#update'
+  post 'users/create', to: 'users#create'
 
   #Email Builder
   get 'builder/new_email'
