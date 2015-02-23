@@ -1,0 +1,12 @@
+.col-xs-10.col-xs-offset-1
+  %h2 New User
+  .well.bs-component
+    = form_for @user, url: 'create', method: 'post' do |f|
+      = render 'shared/user_fields', f: f
+      .row.form-group
+        = f.label :password, class: 'control-label col-xs-2 col-xs-offset-1'
+        .col-xs-6
+          = f.password_field :password, placeholder: 'Password', class: 'form-control'
+
+      .row.form-group.text-center
+        = submit_tag 'Save', class: 'btn btn-success'

@@ -1,0 +1,16 @@
+.col-xs-10.col-xs-offset-1
+  %h2
+    = "#{@user.first} #{@user.last}"
+  .well.bs-component
+    = form_for @user, url: '/users/update', method: 'post' do |f|
+      = f.hidden_field :id
+      = render 'shared/user_fields', f: f
+      .row.form-group
+        = f.label :password, class: 'control-label col-xs-2 col-xs-offset-1'
+        .col-xs-6
+          %button.btn.btn-warning.btn-xs{data: {target: 'modal'}} Edit
+
+      .row.form-group.text-center
+        = link_to 'Delete', '/delete', class: 'btn btn-danger'
+        = submit_tag 'Save', class: 'btn btn-success'
+
