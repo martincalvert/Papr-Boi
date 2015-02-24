@@ -1,0 +1,8 @@
+.col-xs-10.col-xs-offset-1
+  %h2
+    = "#{@style.name}".titleize
+  .well.bs-component
+    = render 'form'
+    .row.form-group.text-center
+      %a.btn.btn-danger{href: "/styles/destroy/#{@style.id}"} Delete
+      = submit_tag 'Save', class: 'btn btn-success'

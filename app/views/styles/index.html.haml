@@ -1,0 +1,18 @@
+.col-xs-10.col-xs-offset-1
+  .jumbotron.text-center{style: 'margin-top: 20px;'}
+    %h2 CSS Packs
+  .row
+    .bs-component
+      .list-group
+        - @styles.each do |css|
+          .list-group-item
+            .row-action-primary
+              =link_to "edit/#{css.id}" do
+                %i.mdi-notification-sms-failed
+            .row-content
+              .list-group-item-heading
+                = "Name: #{css.name}"
+              .list-group-item-content
+                = "Permission Groups : #{css.permission_group_id}"
+  %a.btn.btn-info.btn-fab.btn-raise.mdi-content-add{href:"new", style: 'position: fixed; bottom: 15%; right: 15%'}
+    .ripple-wrapper

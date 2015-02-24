@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'revolver#index'
 
   #User Access Flow Controlls
@@ -12,10 +13,19 @@ Rails.application.routes.draw do
   get 'users/new'
   get 'users/edit', to: 'users#edit'
   get 'users/edit/:id', to: 'users#edit'
+  get 'users/destroy'
   post 'users/update', to: 'users#update'
   post 'users/create', to: 'users#create'
 
+  #CSS Management
+  get 'styles/index'
+  get 'styles/new'
+  get 'styles/edit/:id', to: 'styles#edit'
+  get 'styles/destroy/:id', to: 'styles#destroy'
+  post 'styles/update', to: 'styles#update'
+  post 'styles/create', to: 'styles#create'
+
   #Email Builder
-  get 'builder/new_email'
+  get 'builder/new', to: 'builder#new_email'
   get 'builder/build'
 end
