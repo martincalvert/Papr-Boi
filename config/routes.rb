@@ -25,6 +25,11 @@ Rails.application.routes.draw do
   post 'styles/update', to: 'styles#update'
   post 'styles/create', to: 'styles#create'
 
+  #Modules Management
+  get 'sections/index'
+  get 'sections/edit/:id'
+  get 'sections/new'
+
   #Email Builder
   get 'builder/new', to: 'builder#new_email'
   get 'builder/build'
