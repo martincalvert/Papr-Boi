@@ -9,7 +9,7 @@ class StylesController < ApplicationController
 
   def update
     style = Style.find(params[:style_id])
-    if style.present? && style.update
+    if style.present? && style.update(style_params)
       flash[:info] = 'CSS Pack updated!'
       redirect_to styles_index_path
     else

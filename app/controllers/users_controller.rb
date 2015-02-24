@@ -29,14 +29,11 @@ class UsersController < ApplicationController
   def update
     updates = params['user']
     user = User.find(updates['id'])
-    if user.present?
-      if user.update(user_params)
+    if user.present? && user.update(user_params)
         flash[:info] = 'User Updated'
         redirect_to users_index_path
-      else
-        redirect_to "/users/edit/#{user.id}"
-      end
     else
+      flash[:error] = 'User was not updated!'
       redirect_to "/users/edit/#{user.id}"
     end
   end
