@@ -1,4 +1,7 @@
 .col-xs-10.col-xs-offset-1
   %h2 New CSS Pack
   .well.bs-component
-    = render 'form'
+    = form_for @style, url: '/styles/create', method: 'post' do |f|
+      = render 'form', f:  f
+      .row.text-center
+        = submit_tag 'Save', class: 'btn btn-success'

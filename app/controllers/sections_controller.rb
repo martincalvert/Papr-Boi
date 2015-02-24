@@ -4,11 +4,11 @@ class SectionsController < ApplicationController
   end
 
   def edit
-    @section = Section.find(param[:id])
+    @section = Section.find(params[:id])
   end
 
   def update
-    section = Section.find(param[:id])
+    section = Section.find(params[:id])
     if section.present? && section.update(section_params)
       flash[:info] = 'Module updated!'
       redirect_to sections_index_path

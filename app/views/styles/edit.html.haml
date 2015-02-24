@@ -2,7 +2,9 @@
   %h2
     = "#{@style.name}".titleize
   .well.bs-component
-    = render 'form'
-    .row.form-group.text-center
-      %a.btn.btn-danger{href: "/styles/destroy/#{@style.id}"} Delete
-      = submit_tag 'Save', class: 'btn btn-success'
+    = form_for @style, url: '/styles/update', method: 'post' do |f|
+      = render 'form', f: f
+      %input{type: 'hidden', value: "#{@style.id}", name: 'style_id'}
+      .row.form-group.text-center
+        %a.btn.btn-danger{href: "/styles/destroy/#{@style.id}"} Delete
+        = submit_tag 'Save', class: 'btn btn-success'

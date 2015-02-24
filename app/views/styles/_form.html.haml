@@ -1,13 +1,12 @@
-= form_for @style, url: 'create', method: 'post' do |f|
-  .row.form-group
-    = f.label :name, class: 'control-label col-xs-2 col-xs-offset-1'
-    .col-xs-6
-      = f.text_field :name, class: 'form-control'
-  .row.form-group
-    = f.label :css, 'CSS', class: 'control-label col-xs-2 col-xs-offset-1'
-    .col-xs-6
-      = f.text_area :css, class: 'form-control'
-  .row.form-group
-    = f.label :permission_group_ids, 'Permission Groups', class: 'control-label col-xs-2 col-xs-offset-1'
-    .col-xs-6
-      = select('style[permission_group_ids]','', (options_for_select(get_permission_groups)), {}, {class: 'form-control',multiple: true})
+.row.form-group
+  = f.label :name, class: 'control-label col-xs-2 col-xs-offset-1'
+  .col-xs-6
+    = f.text_field :name, class: 'form-control'
+.row.form-group
+  = f.label :css, 'CSS', class: 'control-label col-xs-2 col-xs-offset-1'
+  .col-xs-6
+    = f.text_area :css, class: 'form-control'
+.row.form-group
+  = f.label :permission_group_id, 'Permission Groups', class: 'control-label col-xs-2 col-xs-offset-1'
+  .col-xs-6
+    = select('style[permission_group_id]','', (options_for_select(get_permission_groups)), {}, {class: 'form-control',multiple: true})

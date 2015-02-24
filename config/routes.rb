@@ -26,11 +26,11 @@ Rails.application.routes.draw do
 
   #Modules Management
   get 'sections/index'
-  get 'sections/edit/:id'
+  get 'sections/edit/:id', to: 'sections#edit'
   get 'sections/new'
-  get 'sections/destroy/:id'
-  post 'section/update'
-  post 'section/create'
+  get 'sections/destroy/:id', to: 'sections#destroy'
+  post 'sections/update'
+  post 'sections/create'
 
   #Email Builder
   get 'builder/new', to: 'builder#new_email'
