@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   #User Management
   get 'users/index'
   get 'users/new'
-  get 'users/edit', to: 'users#edit'
   get 'users/edit/:id', to: 'users#edit'
   get 'users/destroy'
   post 'users/update', to: 'users#update'
@@ -29,6 +28,9 @@ Rails.application.routes.draw do
   get 'sections/index'
   get 'sections/edit/:id'
   get 'sections/new'
+  get 'sections/destroy/:id'
+  post 'section/update'
+  post 'section/create'
 
   #Email Builder
   get 'builder/new', to: 'builder#new_email'

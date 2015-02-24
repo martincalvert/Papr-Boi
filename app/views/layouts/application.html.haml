@@ -23,7 +23,7 @@
                 %i.mdi-hardware-keyboard-arrow-down
               %ul.dropdown-menu
                 %li
-                  = link_to 'Modules', users_edit_path
+                  = link_to 'Modules', sections_index_path
                 %li.divider
                 %li
                   = link_to 'CSS', styles_index_path
@@ -39,7 +39,7 @@
                 %i.mdi-social-person{style: 'font-size: 20px;'}
               %ul.dropdown-menu
                 %li
-                  = link_to 'User Profile', users_edit_path
+                  = link_to 'User Profile', "/users/edit/#{session[:user_id]}"
                 %li.divider
                 %li
                   = link_to 'Logout', revolver_logout_path
