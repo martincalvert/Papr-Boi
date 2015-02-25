@@ -1,4 +1,0 @@
-.row.form-group
-  = f.label :permission_group_ids, 'Permission Groups', class: 'control-label col-xs-2 col-xs-offset-1'
-  .col-xs-6
-    = select("#{object.class.to_s.downcase}[permission_group_id]",'', (options_for_select(get_permission_groups)), {}, {class: 'form-control',multiple: true})

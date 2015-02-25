@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224151740) do
+ActiveRecord::Schema.define(version: 20150225023112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20150224151740) do
     t.string   "name"
     t.string   "mustache"
     t.string   "fields"
-    t.string   "permission_group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -28,7 +27,6 @@ ActiveRecord::Schema.define(version: 20150224151740) do
   create_table "styles", force: true do |t|
     t.string   "name"
     t.string   "css"
-    t.string   "permission_group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -38,7 +36,6 @@ ActiveRecord::Schema.define(version: 20150224151740) do
     t.string   "last"
     t.string   "email"
     t.string   "password_digest"
-    t.string   "permission_group_ids"
     t.boolean  "admin"
     t.datetime "created_at"
     t.datetime "updated_at"

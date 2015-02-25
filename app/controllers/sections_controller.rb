@@ -46,6 +46,6 @@ class SectionsController < ApplicationController
 
 private
   def section_params
-    params.require(:section).permit(:name, :mustache, :fields, :permission_group_id)
+    params.require(:section).permit(:name, :mustache, :fields)
   end
 end
