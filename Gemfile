@@ -12,6 +12,7 @@ gem 'knockoutjs-rails'
 
 #Performance Yo
 gem 'rails_12factor'
+gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
 
 #Utilities
 gem 'bcrypt'
