@@ -21,3 +21,6 @@ gem 'mustache'
 gem 'pry'
 gem 'haml'
 gem 'haml-rails'
+
+#Ruby In My Chain
+ruby '2.1.2'
