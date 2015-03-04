@@ -11,7 +11,7 @@ gem 'jquery-rails'
 gem 'knockoutjs-rails'
 
 #Performance Yo
-gem 'turbolinks'
+
 
 #Utilities
 gem 'bcrypt'
