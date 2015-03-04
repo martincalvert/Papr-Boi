@@ -1,0 +1,103 @@
+.col-xs-10.col-xs-offset-1
+  %h2 New Email
+  .well
+    .ko-time
+      -#{data: {bind: "submit: submit"}}
+      %form
+        .row
+          .col-xs-1
+            %h3
+              %i.mdi-editor-format-paint{style: 'font-size: 50px;'}
+          .col-xs-11
+            %h3 CSS Pack
+            %select{data: {bind: "options: availableCss, value: css, optionsCaption: 'Select a CSS Pack'"}}
+        .section{data: {bind: 'foreach: modules'}}
+          .row{style: 'margin-bottom: 10px;'}
+            .col-xs-1
+              %h3
+                %i.mdi-maps-layers{style: 'font-size: 50px;'}
+            .col-xs-11
+              %h3{data: {bind: 'text: moduleName'}}
+              %select{data: {bind: "visible: showSelect(), options: $root.moduleList, optionsText: 'name', optionsValue: 'id', value: moduleNumber ,optionsCaption: 'Select a module'"}}
+              .section{data: {bind: "foreach: moduleFields"}}
+                .form-group
+                  %label.col-xs-2{data: {bind: "text: field"}}
+                  .col-xs-10
+                    %input.form-control{data: {bind: "value: value, attr: { placeholder: field}"}}
+          %hr
+        .row.text-center
+          %button.btn.btn-success{data: {bind: 'click: submit'}} Submit
+%a.btn.btn-info.btn-fab.btn-raise.mdi-content-add{style: 'position: fixed; bottom: 15%; right: 15%', data: {bind: 'click: addModule'}}
+  .ripple-wrapper
+
+
+:javascript
+  var moduleVM = function(name, fields, index) {
+    var self = this
+    self.moduleNumber = ko.observable();
+    self.moduleIndex = index;
+    self.moduleName = ko.observable();
+    self.moduleFields = ko.observableArray();
+    self.showSelect = ko.observable(true);
+
+    self.moduleNumber.subscribe( function(val){
+      var value;
+      for (var x = 0; x < availableModules.length; x++){
+        if (availableModules[x]['id'] == val){
+          value =  x;
+          break;
+        }
+      }
+      self.moduleName(availableModules[value]['name']);
+      self.showSelect(false);
+      availableModules[value]['fields'].split(',').forEach(function(name){
+        self.moduleFields.push(new fieldsVM(name));
+    })
+  })
+  }
+
+  var fieldsVM = function(f){
+    var self = this;
+    self.field = ko.observable(f);
+    self.value = ko.observable();
+  }
+
+  var availableModules = #{@sections.to_json}
+  var availableCss = #{@styles}
+
+  function moduleEditorVM(){
+    var self = this;
+    self.index = 1;
+    self.css = ko.observable();
+    self.modules = ko.observableArray();
+    self.moduleList = ko.observableArray(availableModules);
+
+    self.addModule = function (){
+      self.modules.push(new moduleVM('',[],self.index));
+      self.index++;
+    }
+
+    self.submit = function (){
+      var data = {'css': self.css(), 'modules': []};
+      $.each(self.modules(), function(index){
+        var module = self.modules()[index]
+        var number = module.moduleNumber()
+        var index = module.moduleIndex
+        var modData = {'type': number, 'index': index, 'fields': []};
+        $.each(module.moduleFields(), function(i){
+          var field = module.moduleFields()[i];
+          var name = field.field();
+          var value = field.value();
+          var fieldData = {};
+          fieldData[name] = value
+          modData['fields'].push(fieldData);
+        })
+        data['modules'].push(modData);
+      })
+      var url = 'build?'+$.param(data);
+      window.location.href = url;
+    }
+
+  }
+
+  ko.applyBindings(new moduleEditorVM());

@@ -35,4 +35,5 @@ Rails.application.routes.draw do
   #Email Builder
   get 'builder/new', to: 'builder#new_email'
   get 'builder/build'
+  get 'builder/to_file'
 end

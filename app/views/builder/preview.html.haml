@@ -1,0 +1,18 @@
+.col-xs-12
+  .col-xs-7.well
+    %iframe.col-xs-12#iframe{srcdoc: @email.html_safe, seamless: true}
+  .col-xs-4.col-xs-offset-1.well
+    %textarea.col-xs-12.email-content
+      = @email.html_safe
+  .col-xs-10.col-xs-offset-1.well.text-center
+    %button.btn.btn-success Save To File
+
+:javascript
+  $('.email-content').on('change', function(){
+    var content = $('.email-content').val();
+    $('#iframe').attr('srcdoc',content);
+  })
+  $('.btn-success').on('click', function(){
+    var data = {'email' : $('.email-content').val()}
+    window.location.href = 'to_file?' + $.param(data)
+  })
