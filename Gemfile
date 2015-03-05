@@ -10,13 +10,13 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'jquery-rails'
 gem 'knockoutjs-rails'
 
-#Performance Yo
+#Herokue Yo
 gem 'rails_12factor'
-gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
 
 #Utilities
 gem 'bcrypt'
 gem 'mustache'
+gem 'puma'
 
 #Development
 gem 'pry'
