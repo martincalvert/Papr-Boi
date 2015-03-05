@@ -71,8 +71,8 @@ Then, run this script to get the list.
  */
 @font-face {
   font-family: "Material-Design-Icons";
-  src: url("Material-Design-Icons.eot?-g7cqhn");
-  src: url("fonts/Material-Design-Icons.eot?#iefix-g7cqhn") format("embedded-opentype"), url("Material-Design-Icons.woff?-g7cqhn") format("woff"), url("Material-Design-Icons.ttf?-g7cqhn") format("truetype"), url("Material-Design-Icons.svg?-g7cqhn#Material-Design-Icons") format("svg");
+  src:font-url("Material-Design-Icons.eot?-g7cqhn");
+  src:font-url("fonts/Material-Design-Icons.eot?#iefix-g7cqhn") format("embedded-opentype"), font-url("Material-Design-Icons.woff?-g7cqhn") format("woff"), font-url("Material-Design-Icons.ttf?-g7cqhn") format("truetype"), font-url("Material-Design-Icons.svg?-g7cqhn#Material-Design-Icons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
