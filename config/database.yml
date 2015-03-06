@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: papr_boi_production
-  username: papr_boi
+  username: Martin
   password: <%= ENV['PAPR_BOI_DATABASE_PASSWORD'] %>

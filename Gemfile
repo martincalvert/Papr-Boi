@@ -9,6 +9,7 @@ gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
 gem 'jquery-rails'
 gem 'knockoutjs-rails'
+gem 'uglifier'
 
 #Herokue Yo
 gem 'rails_12factor'
