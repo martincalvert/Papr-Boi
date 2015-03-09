@@ -8,9 +8,16 @@
       .row.form-group
         = f.label :password, class: 'control-label col-xs-2 col-xs-offset-1'
         .col-xs-6
-          %button.btn.btn-warning.btn-xs{data: {target: 'modal'}} Edit
-
+          %button.btn.btn-warning.btn-xs{type: 'button', data: {toggle: 'modal', target: '#password-modal'}} Edit
+          .modal.fade#password-modal{tabindex: '-1', aria: {hidden: 'true'}}
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  %h2 Password
+                .modal-body
+                  = f.password_field :password, class: 'form-control', placeholder: 'New Password'
+                .modal-footer
+                  %button.btn.btn-danger{type: 'button', data: {dismiss: 'modal'}} Close
       .row.form-group.text-center
         = link_to 'Delete', '/delete', class: 'btn btn-danger'
         = submit_tag 'Save', class: 'btn btn-success'
-

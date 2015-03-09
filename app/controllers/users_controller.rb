@@ -1,4 +1,13 @@
 class UsersController < ApplicationController
+  before_action :verify_admin, except: [:edit, :update]
+
+  def verify_admin
+    unless @current_user.admin
+      flash[:error] = 'Only admins can view that content sorry!'
+      redirect_to revolver_welcome_path
+    end
+  end
+
   def index
     @users = User.all
   end
@@ -31,7 +40,11 @@ class UsersController < ApplicationController
     user = User.find(updates['id'])
     if user.present? && user.update(user_params)
         flash[:info] = 'User Updated'
-        redirect_to users_index_path
+        if @current_user.admin
+          redirect_to users_index_path
+        else
+          redirect_to revolver_welcome_path
+        end
     else
       flash[:error] = 'User was not updated!'
       redirect_to "/users/edit/#{user.id}"

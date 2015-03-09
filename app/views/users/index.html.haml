@@ -7,7 +7,10 @@
         - @users.each do |user|
           .list-group-item
             .row-action-primary
-              =link_to "edit/#{user.id}" do
+              - if User.find(session[:user_id]).admin
+                = link_to "edit/#{user.id}" do
+                  %i.mdi-content-create
+              - else
                 %i.mdi-notification-sms-failed
             .row-content
               .list-group-item-heading
