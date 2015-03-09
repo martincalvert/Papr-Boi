@@ -16,7 +16,7 @@ class BuilderController < ApplicationController
   def build
     css = params[:css]
     modules = params[:modules]
-    @email = Style.where(name: params['css']).first.css
+    @email = "<style>#{Style.where(name: params['css']).first.css}</style>\n"
     modules.each do |k,v|
       section = Section.find(v['type']).mustache
       fields = {}
