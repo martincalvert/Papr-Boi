@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if params[:id]
+    if params[:id] && @current_user.admin
       @user = User.find(params[:id])
     else
       @user = User.find(session[:user_id])
