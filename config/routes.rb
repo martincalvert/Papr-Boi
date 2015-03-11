@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'visible_groups/index'
+
+  get 'visible_groups/edit'
+
+  get 'visible_groups/new'
+
   root 'revolver#index'
 
   #User Access Flow Controlls
