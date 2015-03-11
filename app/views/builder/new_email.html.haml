@@ -10,7 +10,12 @@
               %i.mdi-editor-format-paint{style: 'font-size: 50px;'}
           .col-xs-11
             %h3 CSS Pack
-            %select{data: {bind: "options: availableCss, value: css, optionsCaption: 'Select a CSS Pack'"}}
+            %select{data: {bind: "options: availableCss, optionsText: 'name', optionsValue: 'id', value: css, optionsCaption: 'Select a CSS Pack'"}}
+            .section{data: {bind: "foreach: cssFields"}}
+              .form-group
+                %label.col-xs-2{data: {bind: "text: field"}}
+                .col-xs-10
+                  %input.form-control{data: {bind: "value: value, attr: { placeholder: field}"}}
         .section{data: {bind: 'foreach: modules'}}
           .row{style: 'margin-bottom: 10px;'}
             .col-xs-1
@@ -63,27 +68,40 @@
   }
 
   var availableModules = #{@sections.to_json}
-  var availableCss = #{@styles}
+  var availableCss = #{@styles.to_json}
 
   function moduleEditorVM(){
     var self = this;
     self.index = 1;
     self.css = ko.observable();
+    self.cssFields = ko.observableArray();
     self.modules = ko.observableArray();
     self.moduleList = ko.observableArray(availableModules);
-
+    self.css.subscribe( function(v){
+      var value = self.css();
+      availableCss[value]['fields'].split(',').forEach( function(name){
+        self.cssFields.push(new fieldsVM(name));
+      })
+    })
     self.addModule = function (){
       self.modules.push(new moduleVM('',[],self.index));
       self.index++;
     }
 
     self.submit = function (){
-      var data = {'css': self.css(), 'modules': []};
+      var data = {'css': {'name' : availableCss[self.css()]['name'], fields : []}, 'modules': []};
+      $.each(self.cssFields(), function(index){
+        var name = self.cssFields()[index].field()
+        console.log(name)
+        var fieldData = {}
+        fieldData[name] = self.cssFields()[index].value()
+        data['css']['fields'].push(fieldData)
+      })
       $.each(self.modules(), function(index){
         var module = self.modules()[index]
-        var number = module.moduleNumber()
+        var name = module.moduleName()
         var index = module.moduleIndex
-        var modData = {'type': number, 'index': index, 'fields': []};
+        var modData = {'type': name, 'index': index, 'fields': []};
         $.each(module.moduleFields(), function(i){
           var field = module.moduleFields()[i];
           var name = field.field();

@@ -6,3 +6,26 @@
   = f.label :css, 'CSS', class: 'control-label col-xs-2 col-xs-offset-1'
   .col-xs-6
     = f.text_area :css, class: 'form-control', style: 'height: 600px'
+.row.form-group
+  = f.label 'Is this a template?', class: 'control-label col-xs-2 col-xs-offset-1'
+  .col-xs-6
+    .checkbox{style: 'margin-top:0'}
+      %label
+        %input.form-control#template{type: 'checkbox', checked: "#{@style.fields.present? ? 'true' : 'false'}"}
+        %span.ripples
+        %span.check
+- if @style.fields.present?
+  .row.form-group#fields
+    = f.label :fields, class: 'control-label col-xs-2 col-xs-offset-1'
+    .col-xs-6
+      = f.text_field :fields, class: 'form-control'
+- else
+  .row.form-group#fields.hidden
+    = f.label :fields, class: 'control-label col-xs-2 col-xs-offset-1'
+    .col-xs-6
+      = f.text_field :fields, class: 'form-control'
+
+:javascript
+  $('#template').change(function(){
+    $('#fields').toggleClass('hidden')
+  })

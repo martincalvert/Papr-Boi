@@ -1,8 +1,8 @@
 .col-xs-12
   .col-xs-7.well
-    %iframe.col-xs-12#iframe{srcdoc: @email.html_safe, seamless: true}
+    %iframe.col-xs-12#iframe{srcdoc: @email.html_safe, seamless: true, style: 'min-height: 500px'}
   .col-xs-4.col-xs-offset-1.well
-    %textarea.col-xs-12.email-content
+    %textarea.col-xs-12.email-content{style: 'min-height: 500px'}
       = @email.html_safe
   .col-xs-10.col-xs-offset-1.well.text-center
     %button.btn.btn-success Save To File

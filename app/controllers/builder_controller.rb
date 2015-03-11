@@ -1,24 +1,44 @@
 class BuilderController < ApplicationController
   def new_email
-    sections = Section.all.only(:name,:fields)
-    @sections = []
-    sections.each do |s|
+    @sections = Array.new
+    Section.all.only(:name,:fields).each_with_index do |s,i|
       temp = {}
       temp['name'] = s.name
       temp['fields'] = s.fields
-      temp['id'] = s.id
+      temp['id'] = i
       @sections << temp
     end
-    @styles = Style.all
-    @styles = @styles.map(&:name)
+    @styles = Array.new
+    Style.all.only(:name,:fields).each_with_index do |s,i|
+      temp = {}
+      temp['name'] = s.name
+      temp['fields'] = s.fields
+      temp['id'] = i
+      @styles << temp
+    end
   end
 
   def build
-    css = params[:css]
+    css = params[:css][:name]
+    @email = String.new
+    if params[:css][:fields].present?
+      params[:css][:fields].each do |k,v|
+        style = Style.where(name: css).first.css
+        fields = {}
+        v.each do |key, value|
+          fields[key] = value
+        end
+      temp_str = Mustache.render(style,fields)
+      @email << "<style>#{temp_str}</style>"
+      @email << "\n<!-- Module Break -->\n"
+      end
+    else
+      @email << "<style>#{Style.where(name: css).first.css}</style>\n"
+    end
+
     modules = params[:modules]
-    @email = "<style>#{Style.where(name: params['css']).first.css}</style>\n"
     modules.each do |k,v|
-      section = Section.find(v['type']).mustache
+      section = Section.where(name: v['type']).first.mustache
       fields = {}
       v[:fields].each do |key, value|
         name = value.keys.join('')
