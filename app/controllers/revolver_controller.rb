@@ -1,5 +1,5 @@
 class RevolverController < ApplicationController
-  skip_before_action :authorize only: :index
+  skip_before_action :authorize, only: :index
   def login
     user = User.find_by_email(params['email'])
     if user && user.authenticate(params['password'])
