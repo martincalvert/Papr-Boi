@@ -1,2 +1,20 @@
-%h1 VisibleGroups#index
-%p Find me in app/views/visible_groups/index.html.haml
+.col-xs-10.col-xs-offset-1
+  .jumbotron.text-center{style: 'margin-top: 20px;'}
+    %h2 Visible Groups
+  .row
+    .bs-component
+      .list-group
+        - @visible_groups.each do |group|
+          .list-group-item
+            .row-action-primary
+              - if User.find(session[:user_id]).admin
+                = link_to "edit/#{group.id}" do
+                  %i.mdi-content-create
+              - else
+                %i.mdi-notification-sms-failed
+            .row-content
+              .list-group-item-heading
+                = group.name
+              .list-group-item-content
+  %a.btn.btn-info.btn-fab.btn-raise.mdi-content-add{href:"new", style: 'position: fixed; bottom: 15%; right: 15%'}
+    .ripple-wrapper

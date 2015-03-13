@@ -1,2 +1,7 @@
-%h1 VisibleGroups#new
-%p Find me in app/views/visible_groups/new.html.haml
+.col-xs-10.col-xs-offset-1
+  %h2 New Visible Group
+  .well.bs-component
+    = form_for @visible_group, url: '/visible_groups/create', method: 'post' do |f|
+      = render 'form', f:  f
+      .row.text-center
+        = submit_tag 'Save', class: 'btn btn-success'

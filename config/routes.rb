@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'visible_groups/index'
-
-  get 'visible_groups/edit'
-
-  get 'visible_groups/new'
-
   root 'revolver#index'
 
   #User Access Flow Controlls
@@ -35,11 +29,20 @@ Rails.application.routes.draw do
   get 'sections/edit/:id', to: 'sections#edit'
   get 'sections/new'
   get 'sections/destroy/:id', to: 'sections#destroy'
-  post 'sections/update'
+  post 'sections/update/:id', to: 'sections#update'
   post 'sections/create'
 
   #Email Builder
   get 'builder/new', to: 'builder#new_email'
   get 'builder/build'
   get 'builder/to_file'
+
+  #Visible Groups
+  get 'visible_groups/index'
+  get 'visible_groups/edit/:id', to: 'visible_groups#edit'
+  get 'visible_groups/new'
+  post 'visible_groups/create'
+  post 'visible_groups/update'
+  get 'visible_groups/destroy/:id', to: 'visible_groups#destroy'
+
 end

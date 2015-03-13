@@ -9,6 +9,7 @@ class SectionsController < ApplicationController
 
   def update
     section = Section.find(params[:id])
+    binding.pry
     if section.present? && section.update(section_params)
       flash[:info] = 'Module updated!'
       redirect_to sections_index_path
@@ -46,6 +47,6 @@ class SectionsController < ApplicationController
 
 private
   def section_params
-    params.require(:section).permit(:name, :mustache, :fields)
+    params.require(:section).permit(:name, :mustache, :fields, visible_group_ids: [])
   end
 end
