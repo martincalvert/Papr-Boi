@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get 'styles/new'
   get 'styles/edit/:id', to: 'styles#edit'
   get 'styles/destroy/:id', to: 'styles#destroy'
-  post 'styles/update', to: 'styles#update'
+  post 'styles/update/:id', to: 'styles#update'
   post 'styles/create', to: 'styles#create'
 
   #Modules Management

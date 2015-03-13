@@ -46,7 +46,7 @@ class StylesController < ApplicationController
 
 private
   def style_params
-    params.require(:style).permit(:name, :css, :fields)
+    params.require(:style).permit(:name, :css, :fields, visible_group_ids: [])
   end
 
 end
