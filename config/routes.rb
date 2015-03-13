@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'users/new'
   get 'users/edit/:id', to: 'users#edit'
   get 'users/destroy'
-  post 'users/update', to: 'users#update'
+  post 'users/update/:id', to: 'users#update'
   post 'users/create', to: 'users#create'
 
   #CSS Management

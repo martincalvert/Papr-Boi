@@ -4,7 +4,7 @@
   .row
     .bs-component
       .list-group
-        - @users.each do |user|
+        - @users.sort{|u1,u2| u1.last.downcase <=> u2.last.downcase}.each do |user|
           .list-group-item
             .row-action-primary
               - if User.find(session[:user_id]).admin
