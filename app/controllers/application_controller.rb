@@ -11,4 +11,15 @@ class ApplicationController < ActionController::Base
   def authorize
     redirect_to revolver_index_path unless current_user
   end
+
+  def current_groups
+    groups = @current_user.reload.visible_group_ids
+    groups << 0 unless groups.include? 0
+    groups
+  end
+  helper_method :current_groups
+
+  def self.visible_groups
+    self.class.constantize.where("ARRAY#{current_groups} && visible_group_ids")
+  end
 end

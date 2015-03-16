@@ -1,6 +1,6 @@
 class SectionsController < ApplicationController
   def index
-    @sections = Section.all
+    @sections = Section.visible_groups(current_groups)
   end
 
   def edit
@@ -9,7 +9,6 @@ class SectionsController < ApplicationController
 
   def update
     section = Section.find(params[:id])
-    binding.pry
     if section.present? && section.update(section_params)
       flash[:info] = 'Module updated!'
       redirect_to sections_index_path

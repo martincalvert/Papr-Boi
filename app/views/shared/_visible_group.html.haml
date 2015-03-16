@@ -1,4 +1,4 @@
 .row.form-group
   = f.label :visible_group_ids, 'Visible Groups', class: 'control-label col-xs-2 col-xs-offset-1'
   .col-xs-6
-    = f.select :visible_group_ids, options_for_select( visible_group_options, object.visible_group_ids), {include_hidden: false}, {multiple: true, class: 'form-control'}
+    = f.select :visible_group_ids, options_for_select( visible_group_options, object.visible_group_ids), {include_hidden: true}, {multiple: true, class: 'form-control'}

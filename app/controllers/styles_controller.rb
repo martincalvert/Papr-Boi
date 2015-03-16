@@ -1,6 +1,6 @@
 class StylesController < ApplicationController
   def index
-    @styles = Style.all
+    @styles = Style.visible_groups(current_groups)
   end
 
   def edit
