@@ -1,4 +1,12 @@
 class StylesController < ApplicationController
+  before_filter :check_role
+  def check_role
+    unless session[:roles].include? 2
+      flash[:error] = 'You do not have permission to edit/create CSS Packs!'
+      redirect_to revolver_index_path
+    end
+  end
+
   def index
     @styles = Style.visible_groups(current_groups)
   end

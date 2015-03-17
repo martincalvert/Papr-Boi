@@ -1,4 +1,12 @@
 class SectionsController < ApplicationController
+  before_filter :check_role
+  def check_role
+    unless session[:roles].include? 1
+      flash[:error] = 'You do not have permission to create/edit modules!'
+      redirect_to revolver_index_path
+    end
+  end
+
   def index
     @sections = Section.visible_groups(current_groups)
   end

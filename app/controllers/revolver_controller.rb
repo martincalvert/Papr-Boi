@@ -6,6 +6,7 @@ class RevolverController < ApplicationController
       session[:user_id] = user.id
       session[:first] = user.first
       session[:last] = user.last
+      user.admin ? session[:roles] = [1,2,3] : session[:roles] = user.roles
       redirect_to revolver_welcome_path
     else
       redirect_to revolver_index_path
@@ -16,6 +17,7 @@ class RevolverController < ApplicationController
     session[:last] = nil
     session[:first] = nil
     session[:user_id] = nil
+    session[:roles] = nil
     redirect_to revolver_index_path
   end
 

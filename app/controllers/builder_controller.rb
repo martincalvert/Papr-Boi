@@ -1,4 +1,13 @@
 class BuilderController < ApplicationController
+  before_filter :check_role
+
+  def check_role
+    unless session[:roles].include? 3
+      flash[:error] = 'You do not have permission to create an email!'
+      redirect_to revolver_index_path
+    end
+  end
+
   def new_email
     @sections = Array.new
     Section.visible_groups(current_groups).each_with_index do |s,i|

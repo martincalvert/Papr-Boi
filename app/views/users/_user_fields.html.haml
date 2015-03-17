@@ -12,6 +12,10 @@
     = f.text_field :email, class: 'form-control', placeholder: 'Email'
 - if @current_user.admin
   .row.form-group
+    = f.label :roles, class: 'control-label col-xs-2 col-xs-offset-1'
+    .col-xs-6
+      = f.select :roles, options_for_select( roles_options, @user.roles), {include_hidden: false}, {multiple: true, class: 'form-control'}
+  .row.form-group
     = f.label :admin, class: 'control-label col-xs-2 col-xs-offset-1'
     .col-xs-6
       .checkbox
