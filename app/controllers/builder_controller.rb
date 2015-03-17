@@ -1,7 +1,7 @@
 class BuilderController < ApplicationController
   def new_email
     @sections = Array.new
-    Section.visible_groups(current_groups).only(:name,:fields).each_with_index do |s,i|
+    Section.visible_groups(current_groups).each_with_index do |s,i|
       temp = {}
       temp['name'] = s.name
       temp['fields'] = s.fields
@@ -9,7 +9,7 @@ class BuilderController < ApplicationController
       @sections << temp
     end
     @styles = Array.new
-    Style.visible_groups(current_groups).only(:name,:fields).each_with_index do |s,i|
+    Style.visible_groups(current_groups).each_with_index do |s,i|
       temp = {}
       temp['name'] = s.name
       temp['fields'] = s.fields

@@ -14,8 +14,6 @@ class ApplicationController < ActionController::Base
 
   def current_groups
     groups = @current_user.reload.visible_group_ids
-    groups << 0 unless groups.include? 0
-    groups
   end
   helper_method :current_groups
 
