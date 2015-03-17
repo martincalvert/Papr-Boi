@@ -2,7 +2,7 @@
   %h2
     = "#{@user.first} #{@user.last}"
   .well.bs-component
-    = form_for @user, url: '/users/update', method: 'post' do |f|
+    = form_for @user, url: "/users/update/#{@user.id}", method: 'post' do |f|
       = f.hidden_field :id
       = render 'user_fields', f: f
       .row.form-group

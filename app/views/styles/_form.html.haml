@@ -1,3 +1,4 @@
+= render 'shared/visible_group', {f: f, object: @style}
 .row.form-group
   = f.label :name, class: 'control-label col-xs-2 col-xs-offset-1'
   .col-xs-6
@@ -11,7 +12,10 @@
   .col-xs-6
     .checkbox{style: 'margin-top:0'}
       %label
-        %input.form-control#template{type: 'checkbox', checked: "#{@style.fields.present? ? 'true' : 'false'}"}
+        - if @style.fields.present?
+          %input.form-control#template{type: 'checkbox', checked: "true"}
+        - else
+          %input.form-control#template{type: 'checkbox'}
         %span.ripples
         %span.check
 - if @style.fields.present?

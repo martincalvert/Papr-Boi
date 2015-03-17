@@ -11,4 +11,9 @@ class ApplicationController < ActionController::Base
   def authorize
     redirect_to revolver_index_path unless current_user
   end
+
+  def current_groups
+    groups = @current_user.reload.visible_group_ids
+  end
+  helper_method :current_groups
 end

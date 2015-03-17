@@ -2,7 +2,7 @@
   %h2
     = "#{@section.name}".titleize
   .well.bs-component
-    = form_for @section, url: '/sections/update', method: 'post' do |f|
+    = form_for @section, url: "/sections/update/#{@section.id}", method: 'post' do |f|
       = render 'form', f:  f
       .row.form-group.text-center
         %a.btn.btn-danger{href: "/sections/destroy/#{@section.id}"} Delete

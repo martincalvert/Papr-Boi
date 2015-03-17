@@ -1,7 +1,16 @@
 class BuilderController < ApplicationController
+  before_filter :check_role
+
+  def check_role
+    unless session[:roles].include? 3
+      flash[:error] = 'You do not have permission to create an email!'
+      redirect_to revolver_index_path
+    end
+  end
+
   def new_email
     @sections = Array.new
-    Section.all.only(:name,:fields).each_with_index do |s,i|
+    Section.visible_groups(current_groups).each_with_index do |s,i|
       temp = {}
       temp['name'] = s.name
       temp['fields'] = s.fields
@@ -9,7 +18,7 @@ class BuilderController < ApplicationController
       @sections << temp
     end
     @styles = Array.new
-    Style.all.only(:name,:fields).each_with_index do |s,i|
+    Style.visible_groups(current_groups).each_with_index do |s,i|
       temp = {}
       temp['name'] = s.name
       temp['fields'] = s.fields
@@ -52,7 +61,6 @@ class BuilderController < ApplicationController
   end
 
   def to_file
-    binding.pry
     email = params[:email]
     send_data email, filename: "email_#{Time.now.to_s.underscore}.html", type: 'text/html'
   end
