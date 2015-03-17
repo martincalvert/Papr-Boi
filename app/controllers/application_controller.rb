@@ -16,8 +16,4 @@ class ApplicationController < ActionController::Base
     groups = @current_user.reload.visible_group_ids
   end
   helper_method :current_groups
-
-  def self.visible_groups
-    self.class.constantize.where("ARRAY#{current_groups} && visible_group_ids")
-  end
 end
